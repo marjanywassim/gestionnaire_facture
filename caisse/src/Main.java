@@ -27,16 +27,21 @@ public class Main {
         }*/
 
         Fournisseur.creerBaseDonnees_fournisseurs();
-        Facture f1 = new Facture("adonis", LocalDate.of(2023, 6, 10),1500,true);
+        /*Facture f1 = new Facture("adonis", LocalDate.of(2020, 6, 10),1500,true);
         Facture f2 = new Facture("adonis", LocalDate.of(2023, 6, 10),1500,true);
-        Facture f3 = new Facture("venizia", LocalDate.of(2023, 6, 10),1500,true);
+        Facture f3 = new Facture("venizia", LocalDate.of(2023, 6, 10),1500,true);*/
+
+        Facture f1 = new Facture();
+        Facture f2 = new Facture();
 
 
         f1.afficherFacture();
         f2.afficherFacture();
-        f3.afficherFacture();
 
-        System.out.println(Util.repondre());
+        /*LocalDate l1 = LocalDate.now();
+        LocalDate l2 = LocalDate.of(2004, 15, 2);
+        System.out.println();
+*/
 
     }
 

@@ -1,5 +1,5 @@
 import java.io.FileInputStream;
-import java.sql.SQLOutput;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ public class Facture {
     private boolean urgent;
     private double reste;
     Scanner s = new Scanner(System.in);
+    LocalDate dateAuj = LocalDate.now();
     private int jour;
     private int mois;
     private int annee;
@@ -37,6 +38,10 @@ public class Facture {
         System.out.println("Etat de paie : ");
         this.paye = Util.repondre();
 
+        if (ChronoUnit.DAYS.between(this.date, dateAuj) > 30 && !this.paye) {
+            this.urgent = true;
+        }
+
 
     }
     public Facture(String nomFournisseur, LocalDate date, double montant, boolean paye) {
@@ -50,13 +55,13 @@ public class Facture {
     }
 
     public void afficherFacture(){
-        String affichage = "- Numero : " + id + '\n'
-                + "- Fournisseur : " + nomFournisseur + '\n'
-                + "- Date : " + date + '\n'
-                + "- Montant : " + montant + '\n'
-                + "- Paye : " + paye + '\n'
-                + "- Reste : " + reste + '\n'
-                + "- Urgent : " + urgent + '\n';
+        String affichage = "- Numero : " + this.id + '\n'
+                + "- Fournisseur : " + this.nomFournisseur + '\n'
+                + "- Date : " + this.date + '\n'
+                + "- Montant : " + this.montant + '\n'
+                + "- Paye : " + this.paye + '\n'
+                + "- Reste : " + this.reste + '\n'
+                + "- Urgent : " + this.urgent + '\n';
 
         System.out.println(affichage);
     }
