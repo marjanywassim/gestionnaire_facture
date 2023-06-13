@@ -1,4 +1,4 @@
-import java.io.FileInputStream;
+﻿import java.io.FileInputStream;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
