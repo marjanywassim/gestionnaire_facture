@@ -66,8 +66,15 @@ public class Facture {
         System.out.println(affichage);
     }
 
-    public void creerFacture(){
+    public void verifierFournisseur(String nomFournisseur) {
+        if (Fournisseur.verifierFournisseur(nomFournisseur)) {
+            this.fournisseur = Fournisseur.listeFournisseurs_hash.get(nomFournisseur);
+        } else if (!Fournisseur.verifierFournisseur(nomFournisseur)) {
+            //creer fournisseur inclut son ajout dans le txt et la base de donnees
+        }
+    }
 
+    public void creerFacture(){
 
     }
 

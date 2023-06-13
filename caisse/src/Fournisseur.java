@@ -78,6 +78,17 @@ public class Fournisseur {
 
     }*/
 
+    public static boolean verifierFournisseur(String nomFournisseur) {
+        boolean verifier = false;
+        for (int i = 0; i < baseDonnees_fournisseurs.length; i++) {
+            if (listeFournisseurs_hash.containsKey(nomFournisseur)) {
+                verifier = true;
+                break;
+            }
+        }
+        return verifier;
+    }
+
     public static void afficherTableau_Fournisseurs() {
         for (int i = 0; i < nombreFournisseurs; i++) {
             for (int j = 0; j < 4; j++) {
