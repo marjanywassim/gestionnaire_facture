@@ -1,4 +1,4 @@
-﻿import java.io.FileInputStream;
+import java.io.FileInputStream;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,13 +37,18 @@ public class Facture {
         this.montant = s.nextDouble();
         System.out.println("Etat de paie : ");
         this.paye = Util.repondre();
-
+        this.reste = this.montant;
+        if (!this.paye) {
+            System.out.print("Saisir le montant paye : ");
+            reste -= s.nextDouble();
+        }
         if (ChronoUnit.DAYS.between(this.date, dateAuj) > 30 && !this.paye) {
             this.urgent = true;
         }
 
 
     }
+
     public Facture(String nomFournisseur, LocalDate date, double montant, boolean paye) {
         this.fournisseur = Fournisseur.listeFournisseurs_hash.get(nomFournisseur);
         this.id = fournisseur.getFournisseurFacture_id();
@@ -51,10 +56,10 @@ public class Facture {
         this.date = date;
         this.montant = montant;
         this.paye = paye;
-        fournisseur.setFournisseurFacture_id(fournisseur.getFournisseurFacture_id()+1);
+        fournisseur.setFournisseurFacture_id(fournisseur.getFournisseurFacture_id() + 1);
     }
 
-    public void afficherFacture(){
+    public void afficherFacture() {
         String affichage = "- Numero : " + this.id + '\n'
                 + "- Fournisseur : " + this.nomFournisseur + '\n'
                 + "- Date : " + this.date + '\n'
@@ -66,6 +71,10 @@ public class Facture {
         System.out.println(affichage);
     }
 
+    public void creerFacture() {
+
+    }
+
     public void verifierFournisseur(String nomFournisseur) {
         if (Fournisseur.verifierFournisseur(nomFournisseur)) {
             this.fournisseur = Fournisseur.listeFournisseurs_hash.get(nomFournisseur);
@@ -74,10 +83,22 @@ public class Facture {
         }
     }
 
-    public void creerFacture(){
-
+    public void payerFacture() {
+        double montantPaye;
+        do {
+            System.out.print("Saisir le montant a payer : ");
+            montantPaye = s.nextDouble();
+            if (montantPaye < this.reste) {
+                System.out.println("Vous avez paye : " + montantPaye);
+                System.out.println("Il reste a payer : " + this.reste);
+            } else if (montantPaye == this.reste) {
+                System.out.println("Vous avez paye : " + montantPaye);
+                System.out.println("La facture a ete paye !");
+            } else {
+                System.out.println("Le montant paye depasse le reste, veuillez reessayer !");
+            }
+        } while (montantPaye > this.reste);
     }
-
 
     public int getId() {
         return id;
