@@ -85,19 +85,24 @@ public class Facture {
 
     public void payerFacture() {
         double montantPaye;
+        boolean erreur;
         do {
+            erreur = false;
             System.out.print("Saisir le montant a payer : ");
             montantPaye = s.nextDouble();
             if (montantPaye < this.reste) {
+                reste -= montantPaye;
                 System.out.println("Vous avez paye : " + montantPaye);
                 System.out.println("Il reste a payer : " + this.reste);
             } else if (montantPaye == this.reste) {
+                reste -= montantPaye;
                 System.out.println("Vous avez paye : " + montantPaye);
                 System.out.println("La facture a ete paye !");
             } else {
                 System.out.println("Le montant paye depasse le reste, veuillez reessayer !");
+                erreur = true;
             }
-        } while (montantPaye > this.reste);
+        } while (erreur);
     }
 
     public int getId() {

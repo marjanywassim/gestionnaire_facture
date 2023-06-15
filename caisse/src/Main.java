@@ -32,11 +32,11 @@ public class Main {
         Facture f3 = new Facture("venizia", LocalDate.of(2023, 6, 10),1500,true);*/
 
         Facture f1 = new Facture();
-        Facture f2 = new Facture();
 
 
         f1.afficherFacture();
-        f2.afficherFacture();
+
+        f1.payerFacture();
 
         /*LocalDate l1 = LocalDate.now();
         LocalDate l2 = LocalDate.of(2004, 15, 2);
